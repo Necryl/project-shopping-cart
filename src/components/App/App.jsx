@@ -13,7 +13,9 @@ const StyledNav = styled.nav`
 
 function AppElem({ dataPage, className }) {
   const AppDiv = styled("div")`
-    box-sizing: border-box;
+    * {
+      box-sizing: border-box;
+    }
   `;
   return (
     <AppDiv className={className}>
