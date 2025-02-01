@@ -1,41 +1,57 @@
 import "./App.css";
 import Products from "/src/components/Products/Products.jsx";
 import Cart from "/src/components/Cart/Cart.jsx";
+import NavItem from "/src/components/NavItem/NavItem.jsx";
 
 import PropTypes from "prop-types";
+import styled from "styled-components";
 
-function App({ dataPage }) {
+const StyledNav = styled.nav`
+  display: flex;
+  gap: 1em;
+`;
+
+function AppElem({ dataPage, className }) {
+  const AppDiv = styled("div")`
+    box-sizing: border-box;
+  `;
   return (
-    <div id="App">
+    <AppDiv className={className}>
       <header>
         <h1>Project: Shopping Cart</h1>
       </header>
-      <nav>
+      <StyledNav>
         {["Shop", "Cart"].map((name, index) => (
-          <a
+          <NavItem
             key={index}
-            className={
+            isActive={
               dataPage === name.toLowerCase() ||
               (dataPage === "home" && name !== "Cart")
-                ? "selected"
-                : ""
+                ? true
+                : false
             }
             href={name === "Cart" ? "/cart" : "/"}
           >
             {name}
-          </a>
+          </NavItem>
         ))}
-      </nav>
+      </StyledNav>
       <main>
-        <h2>{dataPage}</h2>
+        <h2>{dataPage === "home" ? "Home" : "Cart"}</h2>
         {dataPage === "home" ? <Products /> : <Cart />}
       </main>
-    </div>
+    </AppDiv>
   );
 }
 
-App.propTypes = {
+AppElem.propTypes = {
   dataPage: PropTypes.string,
+  className: PropTypes.string,
 };
+
+const App = styled(AppElem)`
+  display: grid;
+  padding: 1em;
+`;
 
 export default App;
