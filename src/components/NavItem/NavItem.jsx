@@ -17,17 +17,12 @@ const StyledA = styled("a")`
     background-color: white;
   }
 `;
-const NavItem = ({ children, href, isActive }) => {
-  return (
-    <StyledA href={href} $isActive={isActive}>
-      {children}
-    </StyledA>
-  );
+const NavItem = ({ children, isActive }) => {
+  return <StyledA $isActive={isActive}>{children}</StyledA>;
 };
 
 NavItem.propTypes = {
   isActive: PropTypes.bool,
-  href: PropTypes.string,
   children: PropTypes.string,
 };
 
