@@ -20,7 +20,19 @@ function Cart({ cartData, setCart }) {
             itemName={data.title}
             imgSrc={data.image}
             btnFunc={() => {
-              setCart((prev) => prev.filter((item) => item !== data));
+              setCart((prev) => {
+                let removed = false;
+                return prev.filter((item) => {
+                  if (removed === false) {
+                    const result = item !== data;
+                    if (!result) {
+                      removed = true;
+                      return result;
+                    }
+                  }
+                  return true;
+                });
+              });
             }}
           />
         ))}
