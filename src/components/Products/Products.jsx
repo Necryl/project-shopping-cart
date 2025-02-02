@@ -23,7 +23,12 @@ function Products({ data, setCart }) {
             imgSrc={pData.image}
             btnFunc={() => {
               console.log("setting cart", pData);
-              setCart((prev) => [...prev, pData]);
+              setCart((prev) => {
+                const keys = ["0", ...Object.keys(prev)];
+                let result = { ...prev };
+                result[Number(keys[keys.length - 1]) + 1] = pData;
+                return result;
+              });
             }}
           />
         ))}

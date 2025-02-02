@@ -26,7 +26,7 @@ const AppDiv = styled("div")`
 `;
 function AppElem({ className }) {
   const [data, setData] = useState([]);
-  const [cart, setCart] = useState([]);
+  const [cart, setCart] = useState({});
   console.log("cart", cart);
   useEffect(() => {
     fetch("https://fakestoreapi.com/products")
@@ -46,7 +46,7 @@ function AppElem({ className }) {
         <Link to="/cart">
           <NavItem>Cart</NavItem>
         </Link>
-        <p>Items in cart: {cart.length}</p>
+        <p>Items in cart: {Object.keys(cart).length}</p>
         <NavItem> Checkout</NavItem>
       </StyledNav>
       <main>
@@ -66,7 +66,6 @@ function AppElem({ className }) {
 }
 
 AppElem.propTypes = {
-  dataPage: PropTypes.string,
   className: PropTypes.string,
 };
 

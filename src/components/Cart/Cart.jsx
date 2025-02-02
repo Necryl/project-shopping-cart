@@ -14,35 +14,30 @@ function Cart({ cartData, setCart }) {
     <div id="Cart">
       <h4>This is the Cart component</h4>
       <ItemContainer>
-        {cartData.map((data, index) => (
-          <CartItem
-            key={index}
-            itemName={data.title}
-            imgSrc={data.image}
-            btnFunc={() => {
-              setCart((prev) => {
-                let removed = false;
-                return prev.filter((item) => {
-                  if (removed === false) {
-                    const result = item !== data;
-                    if (!result) {
-                      removed = true;
-                      return result;
-                    }
-                  }
-                  return true;
+        {Object.keys(cartData).map((key, index) => {
+          const data = cartData[key];
+          return (
+            <CartItem
+              key={index}
+              itemName={data.title}
+              imgSrc={data.image}
+              btnFunc={() => {
+                setCart((prev) => {
+                  const result = { ...prev };
+                  delete result[key];
+                  return result;
                 });
-              });
-            }}
-          />
-        ))}
+              }}
+            />
+          );
+        })}
       </ItemContainer>
     </div>
   );
 }
 
 Cart.propTypes = {
-  cartData: PropTypes.array,
+  cartData: PropTypes.object,
   setCart: PropTypes.func,
 };
 
