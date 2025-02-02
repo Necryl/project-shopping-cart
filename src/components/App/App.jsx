@@ -10,13 +10,18 @@ import { useEffect } from "react";
 import { useState } from "react";
 
 const StyledNav = styled.nav`
-  display: flex;
+  display: grid;
+  grid-template-columns: auto auto 1fr auto;
   gap: 1em;
 `;
 
 const AppDiv = styled("div")`
   * {
     box-sizing: border-box;
+  }
+  p {
+    margin: 0%;
+    text-align: end;
   }
 `;
 function AppElem({ className }) {
@@ -41,6 +46,8 @@ function AppElem({ className }) {
         <Link to="/cart">
           <NavItem>Cart</NavItem>
         </Link>
+        <p>Items in cart: {cart.length}</p>
+        <NavItem> Checkout</NavItem>
       </StyledNav>
       <main>
         <Routes>
