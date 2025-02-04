@@ -3,9 +3,10 @@ import ProductItem from "../ProductItem";
 import PropTypes from "prop-types";
 
 const ProductContainer = styled.div`
-  display: flex;
-  gap: 2em;
-  flex-wrap: wrap;
+  display: grid;
+  max-width: 95vw;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 3em;
   > * {
     // background-color: white;
   }
@@ -21,8 +22,8 @@ function Products({ data, setCart }) {
             key={index}
             itemName={pData.title}
             imgSrc={pData.image}
+            price={pData.price}
             btnFunc={() => {
-              console.log("setting cart", pData);
               setCart((prev) => {
                 const keys = ["0", ...Object.keys(prev)];
                 let result = { ...prev };
