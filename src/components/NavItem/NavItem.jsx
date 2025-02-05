@@ -8,6 +8,8 @@ const StyledA = styled("a")`
   color: white;
   border-bottom: 2px solid
     ${(props) => (props.$isActive ? "white" : "transparent")};
+  user-select: none;
+  transition: 100ms;
   &:hover {
     color: white;
     border-color: white;
@@ -23,7 +25,7 @@ const NavItem = ({ children, isActive }) => {
 
 NavItem.propTypes = {
   isActive: PropTypes.bool,
-  children: PropTypes.string,
+  children: PropTypes.array,
 };
 
 export default NavItem;

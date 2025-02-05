@@ -29,7 +29,6 @@ const AppDiv = styled("div")`
 function AppElem({ className }) {
   const [data, setData] = useState([]);
   const [cart, setCart] = useState({});
-  console.log("cart", cart);
   useEffect(() => {
     fetch("https://fakestoreapi.com/products")
       .then((res) => res.json())
@@ -46,12 +45,10 @@ function AppElem({ className }) {
         <Link to="/cart">Cart</Link>
         <p>Items in cart: {Object.keys(cart).length}</p>
         <NavItem>
-          {" "}
-          Checkout (${" "}
-          {Object.values(cart).reduce(
-            (sum, item) => sum + item.price * item.count,
-            0
-          )}
+          Checkout ($
+          {Object.values(cart)
+            .reduce((sum, item) => sum + item.price * item.count, 0)
+            .toFixed(2)}
           )
         </NavItem>
       </StyledNav>

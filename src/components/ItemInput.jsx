@@ -37,7 +37,7 @@ const InputBox = styled.div`
 `;
 
 const ItemInput = ({ btnFunc, btnText }) => {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(1);
 
   const handleCount = (setNum) => {
     const result = setNum < 0 ? 0 : Math.floor(setNum);
@@ -73,6 +73,7 @@ const ItemInput = ({ btnFunc, btnText }) => {
       <button
         onClick={() => {
           btnFunc(Number(count));
+          setCount(1);
         }}
       >
         {btnText}

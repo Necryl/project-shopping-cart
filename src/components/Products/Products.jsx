@@ -26,10 +26,13 @@ function Products({ data, setCart }) {
             btnFunc={(count) => {
               if (count !== 0) {
                 setCart((prev) => {
-                  const keys = ["0", ...Object.keys(prev)];
-                  let result = { ...prev };
-                  const pDData = { ...pData, count: count };
-                  result[Number(keys[keys.length - 1]) + 1] = pDData;
+                  const result = structuredClone(prev);
+                  if (result[pData.id]) {
+                    result[pData.id].count = result[pData.id].count + count;
+                  } else {
+                    const pDData = { ...pData, count: count };
+                    result[Number(pDData.id)] = pDData;
+                  }
                   return result;
                 });
               }
