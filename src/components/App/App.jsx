@@ -13,6 +13,7 @@ const StyledNav = styled.nav`
   display: grid;
   grid-template-columns: auto auto 1fr auto;
   gap: 1em;
+  align-items: center;
 `;
 
 const AppDiv = styled("div")`
@@ -24,6 +25,7 @@ const AppDiv = styled("div")`
     text-align: end;
   }
 `;
+
 function AppElem({ className }) {
   const [data, setData] = useState([]);
   const [cart, setCart] = useState({});
@@ -40,12 +42,8 @@ function AppElem({ className }) {
         <h1>Project: Shopping Cart</h1>
       </header>
       <StyledNav>
-        <Link to="/">
-          <NavItem>Shop</NavItem>
-        </Link>
-        <Link to="/cart">
-          <NavItem>Cart</NavItem>
-        </Link>
+        <Link to="/">Shop</Link>
+        <Link to="/cart">Cart</Link>
         <p>Items in cart: {Object.keys(cart).length}</p>
         <NavItem> Checkout</NavItem>
       </StyledNav>

@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import ItemInput from "./ItemInput";
 
 const StyledDiv = styled.div`
   padding: 1em;
@@ -30,15 +31,6 @@ const StyledDiv = styled.div`
   }
 `;
 
-const BtnContainer = styled.div`
-  button {
-    scale: 80%;
-  }
-  button:hover {
-    background: green;
-  }
-`;
-
 const ProductItem = ({
   itemName,
   imgSrc,
@@ -51,15 +43,7 @@ const ProductItem = ({
       <img src={imgSrc} loading="lazy" alt={"image of " + itemName} />
       <h4>{itemName}</h4>
       <h5>$ {price}</h5>
-      <BtnContainer>
-        <button
-          onClick={() => {
-            btnFunc();
-          }}
-        >
-          {btnText}
-        </button>
-      </BtnContainer>
+      <ItemInput btnFunc={btnFunc} btnText={btnText} />
     </StyledDiv>
   );
 };
