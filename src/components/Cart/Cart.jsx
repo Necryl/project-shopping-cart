@@ -9,7 +9,6 @@ const ItemContainer = styled.div`
 `;
 
 function Cart({ cartData, setCart }) {
-  console.log("cart", cartData);
   return (
     <div id="Cart">
       <h4>This is the Cart component</h4>
@@ -19,8 +18,17 @@ function Cart({ cartData, setCart }) {
           return (
             <CartItem
               key={index}
-              itemName={data.title}
-              imgSrc={data.image}
+              data={data}
+              editFunc={(num) => {
+                const setNum = num > 0 ? num : 1;
+                if (setNum !== data.count) {
+                  setCart((prev) => {
+                    const result = structuredClone(prev);
+                    result[key].count = setNum;
+                    return result;
+                  });
+                }
+              }}
               btnFunc={() => {
                 setCart((prev) => {
                   const result = { ...prev };
