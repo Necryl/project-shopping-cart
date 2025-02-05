@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import PropTypes from "prop-types";
+import { useState } from "react";
 
 const BtnContainer = styled.div`
   display: flex;
@@ -14,11 +15,11 @@ const BtnContainer = styled.div`
 
 const InputBox = styled.div`
   display: grid;
-  grid-template-columns: 4ch repeat(2, 2.5ch);
+  grid-template-columns: 5ch repeat(2, 2.5ch);
   padding: 0.5em;
   height: 5ch;
   input {
-    min-width: 0;
+    min-width: 3ch;
     text-align: center;
     padding: 0em;
   }
@@ -36,16 +37,42 @@ const InputBox = styled.div`
 `;
 
 const ItemInput = ({ btnFunc, btnText }) => {
+  const [count, setCount] = useState(0);
+
+  const handleCount = (setNum) => {
+    const result = setNum < 0 ? 0 : Math.floor(setNum);
+    if (count !== result) {
+      setCount(String(result));
+    }
+  };
   return (
     <BtnContainer>
       <InputBox className="input-container">
-        <input type="number" defaultValue="0" />
-        <input type="button" value="^" />
-        <input type="button" value="v" />
+        <input
+          type="number"
+          value={count}
+          onChange={(e) => {
+            handleCount(e.target.value);
+          }}
+        />
+        <input
+          type="button"
+          value="^"
+          onClick={() => {
+            handleCount(Number(count) + 1);
+          }}
+        />
+        <input
+          type="button"
+          value="v"
+          onClick={() => {
+            handleCount(Number(count) - 1);
+          }}
+        />
       </InputBox>
       <button
         onClick={() => {
-          btnFunc();
+          btnFunc(Number(count));
         }}
       >
         {btnText}

@@ -23,13 +23,16 @@ function Products({ data, setCart }) {
             itemName={pData.title}
             imgSrc={pData.image}
             price={pData.price}
-            btnFunc={() => {
-              setCart((prev) => {
-                const keys = ["0", ...Object.keys(prev)];
-                let result = { ...prev };
-                result[Number(keys[keys.length - 1]) + 1] = pData;
-                return result;
-              });
+            btnFunc={(count) => {
+              if (count !== 0) {
+                setCart((prev) => {
+                  const keys = ["0", ...Object.keys(prev)];
+                  let result = { ...prev };
+                  const pDData = { ...pData, count: count };
+                  result[Number(keys[keys.length - 1]) + 1] = pDData;
+                  return result;
+                });
+              }
             }}
           />
         ))}

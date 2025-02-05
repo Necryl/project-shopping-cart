@@ -45,7 +45,15 @@ function AppElem({ className }) {
         <Link to="/">Shop</Link>
         <Link to="/cart">Cart</Link>
         <p>Items in cart: {Object.keys(cart).length}</p>
-        <NavItem> Checkout</NavItem>
+        <NavItem>
+          {" "}
+          Checkout (${" "}
+          {Object.values(cart).reduce(
+            (sum, item) => sum + item.price * item.count,
+            0
+          )}
+          )
+        </NavItem>
       </StyledNav>
       <main>
         <Routes>
