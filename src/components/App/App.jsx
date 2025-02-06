@@ -55,11 +55,11 @@ function AppElem({ className }) {
       <main>
         <Routes>
           <Route
-            path="/"
+            path="/project-shopping-cart/"
             element={<Products data={data} setCart={setCart} />}
           />
           <Route
-            path="/cart"
+            path="/project-shopping-cart/cart"
             element={<Cart cartData={cart} setCart={setCart} />}
           />
         </Routes>
