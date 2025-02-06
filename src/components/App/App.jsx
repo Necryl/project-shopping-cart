@@ -41,8 +41,8 @@ function AppElem({ className }) {
         <h1>Project: Shopping Cart</h1>
       </header>
       <StyledNav>
-        <Link to="/">Shop</Link>
-        <Link to="/cart">Cart</Link>
+        <Link to="/project-shopping-cart">Shop</Link>
+        <Link to="/project-shopping-cart/cart">Cart</Link>
         <p>Items in cart: {Object.keys(cart).length}</p>
         <NavItem>
           Checkout ($
